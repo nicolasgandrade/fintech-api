@@ -1,5 +1,6 @@
 package com.nicolasgandrade.fintech.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class User {
     @Email
     @Column(unique = true)
     private String email;
+    @JsonIgnore
     private String password;
     @Column(unique = true)
     private String cpf;
