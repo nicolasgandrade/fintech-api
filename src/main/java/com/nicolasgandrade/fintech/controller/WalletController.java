@@ -5,10 +5,10 @@ import com.nicolasgandrade.fintech.model.Wallet;
 import com.nicolasgandrade.fintech.service.WalletService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -20,5 +20,14 @@ public class WalletController {
     @PostMapping
     public ResponseEntity<Wallet> createWallet(@RequestBody WalletRequest request) {
         return ResponseEntity.ok().body(walletService.createWallet(request));
+    }
+
+    public ResponseEntity<List<Wallet>> findAll() {
+        return ResponseEntity.ok().body(walletService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Wallet> findById(@PathVariable UUID id) {
+        return ResponseEntity.ok(walletService.findById(id));
     }
 }

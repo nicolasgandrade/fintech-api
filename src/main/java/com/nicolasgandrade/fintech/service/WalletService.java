@@ -9,6 +9,7 @@ import com.nicolasgandrade.fintech.repository.WalletRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -40,6 +41,10 @@ public class WalletService {
     public Wallet findById(UUID id) {
         return walletRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Id not found"));
+    }
+
+    public List<Wallet> findAll() {
+        return walletRepository.findAll();
     }
 
     public boolean ownerHasWallet(User owner) {
