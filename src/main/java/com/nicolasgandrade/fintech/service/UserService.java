@@ -1,6 +1,7 @@
 package com.nicolasgandrade.fintech.service;
 
 import com.nicolasgandrade.fintech.dto.UserRequest;
+import com.nicolasgandrade.fintech.exception.ResourceNotFoundException;
 import com.nicolasgandrade.fintech.model.User;
 import com.nicolasgandrade.fintech.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,6 @@ public class UserService {
 
     public User findById(UUID id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 }
