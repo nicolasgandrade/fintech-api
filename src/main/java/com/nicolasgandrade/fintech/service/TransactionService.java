@@ -33,6 +33,12 @@ public class TransactionService {
 
         if (validateCredit(payerWallet, request.getAmount())) {
             transferMoney(payerWallet, payeeWallet, request.getAmount());
+            Transaction transaction = Transaction.builder()
+                    .amount(request.getAmount())
+                    .payerWallet(payerWallet)
+                    .payeeWallet(payeeWallet)
+                    .build();
+            transactionRepository.save(transaction);
         } else {
             throw new RuntimeException("The payer doesn't have sufficient money to transfer");
         }
