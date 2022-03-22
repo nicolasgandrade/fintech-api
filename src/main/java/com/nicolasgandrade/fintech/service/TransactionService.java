@@ -39,6 +39,8 @@ public class TransactionService {
                     .payeeWallet(payeeWallet)
                     .build();
             transactionRepository.save(transaction);
+
+            walletService.addTransactionToWallet(payerWallet, transaction);
         } else {
             throw new RuntimeException("The payer doesn't have sufficient money to transfer");
         }

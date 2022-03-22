@@ -2,6 +2,7 @@ package com.nicolasgandrade.fintech.service;
 
 import com.nicolasgandrade.fintech.dto.WalletRequest;
 import com.nicolasgandrade.fintech.exception.ResourceNotFoundException;
+import com.nicolasgandrade.fintech.model.Transaction;
 import com.nicolasgandrade.fintech.model.User;
 import com.nicolasgandrade.fintech.model.Wallet;
 import com.nicolasgandrade.fintech.repository.UserRepository;
@@ -45,6 +46,10 @@ public class WalletService {
 
     public List<Wallet> findAll() {
         return walletRepository.findAll();
+    }
+
+    public void addTransactionToWallet(Wallet wallet, Transaction transaction) {
+        wallet.getTransactions().add(transaction);
     }
 
     public boolean ownerHasWallet(User owner) {

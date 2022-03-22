@@ -29,6 +29,7 @@ public class Wallet {
     @JsonIgnore
     private User owner;
     private BigDecimal balance;
+    @JsonIgnore
     @ManyToMany
     private List<Transaction> transactions;
 
